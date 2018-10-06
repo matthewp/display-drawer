@@ -1,6 +1,6 @@
 {
   "name": "@matthewp/display-drawer",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A drawer that opens and closes, where some stuff is visible and some is not.",
   "main": "index.js",
   "scripts": {
