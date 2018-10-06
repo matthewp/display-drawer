@@ -95,6 +95,7 @@ class DisplayDrawer extends HTMLElement {
   }
 
   attributeChangedCallback(attrName, oldValue, newVal) {
+    this._setup();
     let isOpen = newVal != null;
     this._moveDrawer(isOpen);
   }
