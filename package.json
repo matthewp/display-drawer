@@ -1,0 +1,20 @@
+{
+  "name": "@matthewp/display-drawer",
+  "version": "1.0.0",
+  "description": "A drawer that opens and closes, where some stuff is visible and some is not.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthewp/display-drawer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matthewp/display-drawer/issues"
+  },
+  "homepage": "https://github.com/matthewp/display-drawer#readme"
+}
