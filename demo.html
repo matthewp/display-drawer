@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<title>&lt;display-drawer&gt;</title>
+<meta charset="utf-8">
+<script type="module" src="./index.js"></script>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  }
+
+  p {
+    line-height: 1.5;
+  }
+
+  main {
+    width: 800px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-column-gap: 1em;
+  }
+
+  main > header {
+    grid-column: 1 / 3;
+    text-align: center;
+  }
+
+  aside {
+    background-color: rgb(244, 245, 247);
+    padding: 0.7em;
+  }
+
+  display-drawer:not(:defined) [slot="unselected"] {
+    display: none;
+  }
+
+  display-drawer {
+    display: block;
+    justify-self: center;
+    background-color: inherit;
+  }
+
+  display-drawer h4 {
+    margin: 0;
+    text-align: left;
+  }
+
+  .items {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .items:first-of-type {
+    margin-top: 0.8em;
+  }
+
+  .items li {
+    margin-bottom: 0.2em;
+  }
+
+  .items li button {
+    border: 0;
+    font-size: 100%;
+    font-family: inherit;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 0.3em;
+    width: 100%;
+    text-align: start;
+  }
+
+  .color-red button {
+    background-color: red;
+  }
+
+  .color-green button {
+    background-color: green;
+  }
+
+  .color-purple button {
+    background-color: purple;
+  }
+
+  .color-magneta button {
+    background-color: magenta;
+  }
+
+  .color-blue button {
+    background-color: blue;
+  }
+
+  .color-yellow button {
+    background-color: yellow;
+  }
+
+  .color-orange button {
+    background-color: orange;
+  }
+</style>
+
+<main>
+  <header>
+    <h1>Some App</h1>
+  </header>
+
+  <div class="content">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In aliquet massa quis ipsum faucibus, tincidunt euismod lectus posuere. Aenean bibendum nisi hendrerit tortor efficitur, ut luctus ex aliquet. Fusce auctor fermentum orci at elementum. Aliquam posuere vel quam vel pellentesque. Integer blandit, urna a tincidunt gravida, eros nisi condimentum neque, eget rutrum nisl lorem vel urna. Sed eget efficitur dui. Fusce quam mi, fermentum sit amet porta id, rhoncus a turpis. Duis vitae neque gravida, bibendum neque non, vehicula mi. Sed ornare nunc sed egestas faucibus. In a efficitur metus.</p>
+    <p>Pellentesque consequat nec mi vitae tincidunt. Mauris cursus libero in massa dictum aliquam. Vestibulum faucibus dictum nunc, id consequat nisi fringilla sed. Pellentesque sed faucibus lectus. Nam tempus luctus consequat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis sit amet ligula a orci posuere volutpat non sit amet tellus. Aenean luctus ornare aliquet. Integer suscipit ornare sapien, nec interdum nibh fermentum molestie. Mauris blandit mauris at suscipit vehicula.</p>
+  </div>
+
+  <aside>
+    <display-drawer>
+      <h4 slot="header">Colors</h4>
+      <ul class="items" slot="selected">
+        <li class="color-red">
+          <button type="button">Red</button>
+        </li>
+        <li class="color-green">
+          <button type="button">Green</button>
+        </li>
+      </ul>
+      <ul class="items" slot="unselected">
+        <li class="color-blue">
+          <button type="button">Blue</button>
+        </li>
+        <li class="color-purple">
+          <button type="button">Purple</button>
+        </li>
+        <li class="color-magneta">
+          <button type="button">Magneta</button>
+        </li>
+        <li class="color-yellow">
+          <button type="button">Yellow</button>
+        </li>
+        <li class="color-orange">
+          <button type="button">Orange</button>
+        </li>
+      </ul>
+    </display-drawer>
+  </aside>
+</main>
+
+<script type="module">
+let drawer = document.querySelector('display-drawer');
+</script>
