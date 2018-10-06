@@ -115,7 +115,7 @@
   </div>
 
   <aside>
-    <display-drawer open>
+    <display-drawer>
       <h4 slot="header">Colors</h4>
       <ul class="items" slot="selected">
         <li class="color-red">
@@ -148,4 +148,12 @@
 
 <script type="module">
 let drawer = document.querySelector('display-drawer');
+
+drawer.addEventListener('open', ev => {
+  console.log('Opened', ev.detail);
+});
+
+drawer.addEventListener('close', ev => {
+  console.log('Closed', ev.detail);
+});
 </script>

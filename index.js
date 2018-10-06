@@ -94,10 +94,18 @@ class DisplayDrawer extends HTMLElement {
     this._button.addEventListener('click', this);
   }
 
-  attributeChangedCallback(attrName, oldValue, newVal) {
+  attributeChangedCallback(_, __, newVal) {
+    let shouldDispatch = this._hasSetup;
     this._setup();
     let isOpen = newVal != null;
     this._moveDrawer(isOpen);
+
+    if(shouldDispatch) {
+      this.dispatchEvent(new CustomEvent(isOpen ? 'open' : 'close', {
+        bubbles: true,
+        detail: isOpen
+      }));
+    }
   }
 
   handleEvent() {
