@@ -68,14 +68,17 @@
     margin-bottom: 0.2em;
   }
 
-  .items li button {
+  button {
     border: 0;
     font-size: 100%;
     font-family: inherit;
     cursor: pointer;
-    border-radius: 4px;
     padding: 0.3em;
     width: 100%;
+  }
+
+  .items li button {
+    border-radius: 4px;
     text-align: start;
   }
 
@@ -169,14 +172,21 @@
         <li class="color-green">
             <button type="button">Kiwi</button>
           </li>
-          <li class="color-green">
-              <button type="button">Kiwi</button>
-            </li>
-            <li class="color-green">
-                <button type="button">Kiwi</button>
-              </li>
+        <li class="color-green">
+          <button type="button">Kiwi</button>
+        </li>
+        <li class="color-green">
+          <button type="button">Kiwi</button>
+        </li>
       </ul>
     </display-drawer>
+
+    <display-drawer no-divider>
+        <h4 slot="header">Actions</h4>
+        <div slot="unselected">
+          <button type="button">Remove me</button>
+        </div>
+      </display-drawer>
   </aside>
 </main>
 

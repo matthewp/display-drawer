@@ -4,6 +4,10 @@ const template = `
       display: block;
     }
 
+    :host([no-divider]) hr {
+      display: none;
+    }
+
     .wrapper {
       background-color: inherit;
       overflow: hidden;
@@ -46,9 +50,14 @@ const template = `
     }
 
     .drawer {
-      margin-top: var(--drawer-margin);
+      margin-top: calc(var(--drawer-margin) - 0.7em);
       z-index: 1;
       background-color: inherit;
+    }
+
+    :host([no-divider]) .drawer {
+      padding-top: 10px;
+      margin-top: calc(var(--drawer-margin) - 1px);
     }
 
     .drawer.mounted {
@@ -172,7 +181,7 @@ class DisplayDrawer extends HTMLElement {
   }
 
   _setMargin() {
-    this._drawer.style.setProperty('--drawer-margin', 'calc(' + this._drawerHeight + ' - 0.7em)');
+    this._drawer.style.setProperty('--drawer-margin', this._drawerHeight);
   }
 }
 
