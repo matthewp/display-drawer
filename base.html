@@ -1,8 +1,7 @@
 <!doctype html>
 <html lang="en">
-<title>&lt;display-drawer&gt;</title>
+<title>display-drawer</title>
 <meta charset="utf-8">
-<script type="module" src="./index.js"></script>
 <style>
   html, body {
     margin: 0;
@@ -35,17 +34,13 @@
     padding: 0.7em;
   }
 
-  display-drawer:not(:defined) [slot="unselected"] {
-    display: none;
-  }
-
-  display-drawer {
+  .display-drawer {
     display: block;
     justify-self: center;
     background-color: inherit;
   }
 
-  display-drawer h4 {
+  .display-drawer h4 {
     margin: 0;
     text-align: left;
   }
@@ -73,6 +68,63 @@
     padding: 0.3em;
     width: 100%;
     text-align: start;
+  }
+
+  .wrapper {
+    background-color: inherit;
+    overflow: hidden;
+  }
+
+  .counter {
+    z-index: 2;
+    position: relative;
+    background-color: inherit;
+  }
+
+  button {
+    border: 0;
+    background: transparent;
+    font-size: 100%;
+    font-family: inherit;
+    cursor: pointer;
+    padding: 0.4em;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+  }
+
+  button:not(:focus-visible) {
+    outline: none;
+  }
+
+  button .arrow {
+    transition: 0.25s;
+    transition-style: preserve-3d;
+  }
+
+  button .arrow:after {
+    content: '⌃';
+  }
+
+  button.open .arrow {
+    transform: rotateX(180deg);
+  }
+
+  .drawer {
+    transition: transform .25s ease-out;
+    transform: translate3d(0, calc(-100% - 0.7em), 0);
+    z-index: 1;
+    background-color: inherit;
+  }
+
+  .drawer.open {
+    transform: translate3d(0, 0, 0);
+  }
+
+  hr {
+    border: 3px solid #cfd3d7;
+    margin: 0.7em 0;
   }
 
   .color-red button {
@@ -115,46 +167,52 @@
   </div>
 
   <aside>
-    <display-drawer>
-      <h4 slot="header">Colors</h4>
-      <ul class="items" slot="selected">
-        <li class="color-red">
-          <button type="button">Red</button>
-        </li>
-        <li class="color-green">
-          <button type="button">Green</button>
-        </li>
-      </ul>
-      <ul class="items" slot="unselected">
-        <li class="color-blue">
-          <button type="button">Blue</button>
-        </li>
-        <li class="color-purple">
-          <button type="button">Purple</button>
-        </li>
-        <li class="color-magneta">
-          <button type="button">Magneta</button>
-        </li>
-        <li class="color-yellow">
-          <button type="button">Yellow</button>
-        </li>
-        <li class="color-orange">
-          <button type="button">Orange</button>
-        </li>
-      </ul>
-    </display-drawer>
+    <div class="display-drawer wrapper">
+      <div class="counter">
+        <button id="open-drawer" type="button">
+          <h4 class="header">Colors</h4>
+          <span class="arrow"></span>
+        </button>
+        <ul class="items selected">
+          <li class="color-red">
+            <button type="button">Red</button>
+          </li>
+          <li class="color-green">
+            <button type="button">Green</button>
+          </li>
+        </ul>
+      </div>
+      <div class="drawer">
+        <hr />
+        <ul class="items unselected">
+          <li class="color-blue">
+            <button type="button">Blue</button>
+          </li>
+          <li class="color-purple">
+            <button type="button">Purple</button>
+          </li>
+          <li class="color-magneta">
+            <button type="button">Magneta</button>
+          </li>
+          <li class="color-yellow">
+            <button type="button">Yellow</button>
+          </li>
+          <li class="color-orange">
+            <button type="button">Orange</button>
+          </li>
+        </ul>
+      </div>
+    </div>
     <h2>Fruit</h2>
   </aside>
 </main>
 
 <script type="module">
-let drawer = document.querySelector('display-drawer');
+let drawer = document.querySelector('.drawer');
+let btn = document.querySelector('#open-drawer');
 
-drawer.addEventListener('open', ev => {
-  console.log('Opened', ev.detail);
-});
-
-drawer.addEventListener('close', ev => {
-  console.log('Closed', ev.detail);
+btn.addEventListener('click', ev => {
+  drawer.classList.toggle('open');
+  btn.classList.toggle('open');
 });
 </script>
