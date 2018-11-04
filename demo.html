@@ -39,6 +39,10 @@
     display: none;
   }
 
+  display-drawer:not(:first-of-type) {
+    margin-top: 1.5em;
+  }
+
   display-drawer {
     display: block;
     justify-self: center;
@@ -141,6 +145,36 @@
         <li class="color-orange">
           <button type="button">Orange</button>
         </li>
+      </ul>
+    </display-drawer>
+
+    <display-drawer>
+      <h4 slot="header">Fruit</h4>
+      <ul class="items" slot="selected">
+        <li class="color-red">
+          <button type="button">Pineapple</button>
+        </li>
+
+      </ul>
+      <ul class="items" slot="unselected">
+        <li class="color-blue">
+          <button type="button">Banana</button>
+        </li>
+        <li class="color-purple">
+          <button type="button">Apple</button>
+        </li>
+        <li class="color-magneta">
+          <button type="button">Orange</button>
+        </li>
+        <li class="color-green">
+            <button type="button">Kiwi</button>
+          </li>
+          <li class="color-green">
+              <button type="button">Kiwi</button>
+            </li>
+            <li class="color-green">
+                <button type="button">Kiwi</button>
+              </li>
       </ul>
     </display-drawer>
   </aside>

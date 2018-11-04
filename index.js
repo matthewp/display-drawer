@@ -46,14 +46,17 @@ const template = `
     }
 
     .drawer {
-      transition: transform .25s ease-out;
-      transform: translate3d(0, calc(-100% - 0.7em), 0);
+      margin-top: var(--drawer-margin);
       z-index: 1;
       background-color: inherit;
     }
 
+    .drawer.mounted {
+      transition: margin-top .25s ease-out;
+    }
+
     .drawer.open {
-      transform: translate3d(0, 0, 0);
+      margin-top: 0;
     }
 
     hr {
@@ -87,11 +90,19 @@ class DisplayDrawer extends HTMLElement {
 
     this._drawer = null;
     this._button = null;
+    this._updateHeight = this._updateHeight.bind(this);
   }
 
   connectedCallback() {
     this._setup();
     this._button.addEventListener('click', this);
+    this._mo = new MutationObserver(this._updateHeight);
+    this._mo.observe(this, { childList: true, subtree: true });
+  }
+
+  disconnectedCallback() {
+    this._button.removeEventListener('click', this);
+    this._mo.disconnect();
   }
 
   attributeChangedCallback(_, __, newVal) {
@@ -127,19 +138,41 @@ class DisplayDrawer extends HTMLElement {
 
   _moveDrawer(isOpen) {
     let fnName = isOpen ? 'add' : 'remove';
-    this._drawer.classList[fnName]('open');
     this._button.classList[fnName]('open');
+    this._drawer.classList[fnName]('open');
+    this._setMargin();
   }
 
   _setup() {
     if(!this._hasSetup) {
       this._hasSetup = true;
-      this.shadowRoot.innerHTML = template;
+      let el = this.querySelector('[slot=unselected]');
       
+      this.shadowRoot.innerHTML = template;
+    
       let root = this.shadowRoot;
       this._button = root.querySelector('button');
       this._drawer = root.querySelector('.drawer');
+      this._setHeight();
+      this._setMargin();
+
+      setTimeout(() => {
+        this._drawer.classList.add('mounted');
+      }, 200);
     }
+  }
+
+  _updateHeight() {
+    this._setHeight();
+    this._setMargin();
+  }
+
+  _setHeight() {
+    this._drawerHeight = '-' + this._drawer.offsetHeight + 'px';
+  }
+
+  _setMargin() {
+    this._drawer.style.setProperty('--drawer-margin', 'calc(' + this._drawerHeight + ' - 0.7em)');
   }
 }
 
